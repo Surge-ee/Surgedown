@@ -4,7 +4,7 @@
 
 This is a Markdown custom field for ExpressionEngine. It updates as you type to display the rendered Markdown, giving you instant feedback on your output.
 
-![Markdown Field](http://raw.github.com/fideloper/fid.field_markdown.ee_addon/master/markdown.png)
+![Markdown Field](https://github.com/fideloper/fid.field_markdown.ee_addon/raw/master/markdown.png)
 
 **Features:**
 
