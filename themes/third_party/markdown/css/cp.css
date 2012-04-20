@@ -1,0 +1,16 @@
+#md_left, #md_right {
+	width: 50%;
+	float: left;
+}
+
+#md_iframe {
+	background: #FFF;
+	border: 1px solid #8195A0;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin: 2px 0;
+	padding: 4px;
+	width: 98%;
+	min-height: 180px;
+}
