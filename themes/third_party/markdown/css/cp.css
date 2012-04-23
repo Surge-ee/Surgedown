@@ -1,9 +1,9 @@
-#md_left, #md_right {
+.md_left, .md_right {
 	width: 50%;
 	float: left;
 }
 
-#md_iframe {
+.md_iframe {
 	background: #FFF;
 	border: 1px solid #8195A0;
 	border-radius: 3px;
