@@ -1,2 +1,2 @@
 <?php
-define('MARKDOWN_VER', '0.5');
+define('MARKDOWN_VER', '1.0');
