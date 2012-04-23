@@ -4,16 +4,15 @@ var MARKDOWN = window.MARKDOWN = (function() {
    	return {
    		//Public scope
    		init: function() {
-   			var md_textarea = $('#field_id_4');
-			var md_iframe = $('#md_iframe');
+   			var container = $('#publish');
+   			//var md_textarea = $('.md_left textarea');
+			//var md_iframe = $('.md_iframe');
 
 			//Setup resizing
-		   	md_textarea.data('y', md_textarea.outerHeight()); 
-
-		   	md_textarea.mouseup(function(){
+		   	container.delegate('.md_left textarea', 'mouseup', function(){
 				var th = $(this);
 				th.data('y', th.outerHeight());
-				md_iframe.css('height', th.data('y')-10)
+				$('.md_iframe').css('height', th.data('y')-10)
 		  	});
 
 		  	//Setup AJAX call [this.actionId]
@@ -23,16 +22,21 @@ var MARKDOWN = window.MARKDOWN = (function() {
 			var timer = false;
 			var actionId = this.actionId;
 
-		  	md_textarea.keyup(function(e) {
+		  	container.delegate('.md_left textarea', 'keyup', function(e) {
+
 		  		if(timer !== false) {
 		  			clearTimeout(timer);
 		  		}
 
+		  		var md_iframe = $(this.parentNode.parentNode).find('.md_right iframe');
+		  		var md_content = $(this).val();
+
+
 		  		timer = setTimeout(function() {
 		  			$.ajax({
 		  				url: '/?ACT='+actionId,
-		  				type: 'POST',
-		  				data: {md_markdown: md_textarea.val()},
+		  				type: 'POST', 
+		  				data: {md_markdown: md_content},
 		  				dataType: 'html',
 		  				error: function(jqXHR, textStatus, errorThrown) {
 		  					//console.log('error', errorThrown, textStatus)

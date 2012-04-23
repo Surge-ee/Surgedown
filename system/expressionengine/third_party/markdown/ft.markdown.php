@@ -20,29 +20,55 @@ class Markdown_ft extends EE_Fieldtype {
 
 	public function display_field($data) {
 
-	$ajax_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_convertToMarkdown'))->get('actions')->row('action_id');
-	$iframe_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_createIframe'))->get('actions')->row('action_id');
+		$ajax_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_convertToMarkdown'))->get('actions')->row('action_id');
+		$iframe_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_createIframe'))->get('actions')->row('action_id');
 
-	// include css and js
-	$this->_include_theme_css('css/cp.css');
-	$this->_include_theme_js('js/cp.js');
+		// include css and js
+		$this->_include_theme_css('css/cp.css');
+		$this->_include_theme_js('js/cp.js');
 
-	// init MARKDOWN js
-	$this->_insert_js('MARKDOWN.actionId = '.$ajax_action_id.'; MARKDOWN.init();');
+		// init MARKDOWN js
+		$this->_insert_js('MARKDOWN.actionId = '.$ajax_action_id.'; MARKDOWN.init();');
 
-	//Need to pass it entry_id
-	//Need to pass it which css file (full path)?
+		//Need to pass it entry_id
+		//Need to pass it which css file (full path)?
 
-	return '<div id="md_container">
-				<div id="md_left" class="md_col">
+		return '<div class="md_container">
+				<div class="md_left md_col">
 					'.form_textarea(array(
 						'name'	=> $this->field_name,
 						'id'	=> $this->field_name,
 						'value'	=> $data
 					)).'
 				</div><!-- md_left -->
-				<div id="md_right" class="md_col">
-					<iframe src="/?ACT='.$iframe_action_id.'&field_id='.$this->field_id.'&entry_id='.$this->EE->input->get('entry_id').'&stylesheet='.urlencode($this->settings['md_css_file']).'" id="md_iframe"></iframe>
+				<div class="md_right md_col">
+					<iframe src="/?ACT='.$iframe_action_id.'&field_id='.$this->field_id.'&entry_id='.$this->EE->input->get('entry_id').'&stylesheet='.urlencode($this->settings['md_css_file']).'" class="md_iframe"></iframe>
+				</div><!-- md_right -->
+			</div><!-- md_container -->';
+	}
+
+	//Matrix Compatibility
+	public function display_cell($data) {
+		$ajax_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_convertToMarkdown'))->get('actions')->row('action_id');
+		$iframe_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_createIframe'))->get('actions')->row('action_id');
+
+		// include css and js
+		$this->_include_theme_css('css/cp.css');
+		$this->_include_theme_js('js/cp.js');
+		
+		$row_id = (isset($this->row_id)) ? $this->row_id : '';
+
+		$this->_insert_js('MARKDOWN.actionId = '.$ajax_action_id.'; MARKDOWN.init();');
+		return '<div class="md_container">
+				<div class="md_left md_col">
+					'.form_textarea(array(
+						'name'	=> $this->cell_name,
+						'id'	=> $this->field_name,
+						'value'	=> $data
+					)).'
+				</div><!-- md_left -->
+				<div class="md_right md_col">
+					<iframe src="/?ACT='.$iframe_action_id.'&matrix=1&row_id='.$row_id.'&col_id='.$this->col_id.'&field_id='.$this->field_id.'&entry_id='.$this->EE->input->get('entry_id').'&stylesheet='.urlencode($this->settings['md_css_file']).'" class="md_iframe"></iframe>
 				</div><!-- md_right -->
 			</div><!-- md_container -->';
 	}
@@ -84,6 +110,31 @@ class Markdown_ft extends EE_Fieldtype {
 	public function save_settings() {
 		return array(
 	        'md_css_file' => $this->EE->input->post('md_css_file')
+	    );
+	}
+
+	//Matrix compatibility
+	public function display_cell_settings($data) {
+		if(!isset($data['md_css_file']) || $data['md_css_file'] === '') {
+			$data['md_css_file'] = $this->settings['md_global_css'];
+		}
+
+		$this->EE->lang->loadfile('markdown');
+
+		$table = '<table class="matrix-col-settings" border="0" cellspacing="0" cellpadding="0">';
+		$table .= '<tr class="matrix-first odd">
+			<th class="matri-first">'.lang('ind_css').'</th>
+			<td class="matrix-last">'.form_input(array('id'=>'md_css_file','name'=>'md_css_file', 'class' => 'matrix-textarea', 'value'=>$data['md_css_file'])).'</td>
+		</tr></table>';
+
+		
+		return $table;
+	}
+
+	//Matrix compatibility
+	public function save_cell_settings($data) {
+		return array(
+	        'md_css_file' => $data['md_css_file']
 	    );
 	}
 
