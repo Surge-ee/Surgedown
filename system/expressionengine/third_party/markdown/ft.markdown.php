@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require(dirname(__FILE__).'/config.php');
+require_once(dirname(__FILE__).'/config.php');
 
 class Markdown_ft extends EE_Fieldtype {
 

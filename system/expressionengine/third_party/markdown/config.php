@@ -1,2 +1,4 @@
 <?php
-define('MARKDOWN_VER', '1.0');
+if(defined('MARKDOWN_VER') === FALSE) {
+	define('MARKDOWN_VER', '1.0');
+}
