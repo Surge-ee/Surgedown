@@ -15,6 +15,7 @@ This is a Markdown custom field for ExpressionEngine. It updates as you type to 
 
 ### To Do:
 1. Get rid of AJAX, replace with client-side Markdown parser. Suggestions *very* welcome.
+2. Since there is already a module portion, add template tags to convert any Markdown string to HTML {mod:markdown:toHTML}content{/mod:markdown:toHTML}
 
 
 ### Change Log
