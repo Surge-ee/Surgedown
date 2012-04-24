@@ -23,6 +23,12 @@ class Markdown_ft extends EE_Fieldtype {
 		$ajax_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_convertToMarkdown'))->get('actions')->row('action_id');
 		$iframe_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_createIframe'))->get('actions')->row('action_id');
 
+		$entry_id = 'new';
+
+		if($this->EE->input->get('entry_id')) {
+			$entry_id = $this->EE->input->get('entry_id');
+		}
+
 		// include css and js
 		$this->_include_theme_css('css/cp.css');
 		$this->_include_theme_js('js/cp.js');
@@ -42,7 +48,7 @@ class Markdown_ft extends EE_Fieldtype {
 					)).'
 				</div><!-- md_left -->
 				<div class="md_right md_col">
-					<iframe src="/?ACT='.$iframe_action_id.'&field_id='.$this->field_id.'&entry_id='.$this->EE->input->get('entry_id').'&stylesheet='.urlencode($this->settings['md_css_file']).'" class="md_iframe"></iframe>
+					<iframe src="/?ACT='.$iframe_action_id.'&field_id='.$this->field_id.'&entry_id='.$entry_id.'&stylesheet='.urlencode($this->settings['md_css_file']).'" class="md_iframe"></iframe>
 				</div><!-- md_right -->
 			</div><!-- md_container -->';
 	}
@@ -52,6 +58,12 @@ class Markdown_ft extends EE_Fieldtype {
 		$ajax_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_convertToMarkdown'))->get('actions')->row('action_id');
 		$iframe_action_id = $this->EE->db->where(array('class' => 'Markdown', 'method' => 'act_createIframe'))->get('actions')->row('action_id');
 
+		$entry_id = 'new';
+
+		if($this->EE->input->get('entry_id')) {
+			$entry_id = $this->EE->input->get('entry_id');
+		}
+		
 		// include css and js
 		$this->_include_theme_css('css/cp.css');
 		$this->_include_theme_js('js/cp.js');
@@ -68,7 +80,7 @@ class Markdown_ft extends EE_Fieldtype {
 					)).'
 				</div><!-- md_left -->
 				<div class="md_right md_col">
-					<iframe src="/?ACT='.$iframe_action_id.'&matrix=1&row_id='.$row_id.'&col_id='.$this->col_id.'&field_id='.$this->field_id.'&entry_id='.$this->EE->input->get('entry_id').'&stylesheet='.urlencode($this->settings['md_css_file']).'" class="md_iframe"></iframe>
+					<iframe src="/?ACT='.$iframe_action_id.'&matrix=1&row_id='.$row_id.'&col_id='.$this->col_id.'&field_id='.$this->field_id.'&entry_id='.$entry_id.'&stylesheet='.urlencode($this->settings['md_css_file']).'" class="md_iframe"></iframe>
 				</div><!-- md_right -->
 			</div><!-- md_container -->';
 	}
