@@ -182,8 +182,8 @@ class Markdown_ft extends EE_Fieldtype {
 
 	public function install() {
 	    return array(
-	        'md_global_css'  => $this->_theme_url().'markdown/css/default.css',
-	        'md_css_file' => $this->_theme_url().'markdown/css/default.css'
+	        'md_global_css'  => MARKDOWN_GLOBAL_CSS, //Edit in config.php, override in site config if desired.
+	        'md_css_file' => MARKDOWN_GLOBAL_CSS
 	    );
 	}
 

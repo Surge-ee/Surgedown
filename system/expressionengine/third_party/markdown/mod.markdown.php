@@ -13,6 +13,9 @@
  * @link		@fideloper
  */
 
+require_once(dirname(__FILE__).'/config.php');
+require_once(dirname(__FILE__).'/library/markdown.php');
+
 class Markdown {
 	
 	public $return_data;
@@ -25,8 +28,6 @@ class Markdown {
 	}
 
 	public function act_convertToMarkdown() {
-		require(PATH_THIRD . '/markdown/library/markdown.php');
-
 		$markdown = $this->EE->input->post('md_markdown');
 
 		$html = Markdown($markdown);
@@ -37,8 +38,6 @@ class Markdown {
 	}
 
 	public function act_createIframe() {
-		require(PATH_THIRD . '/markdown/library/markdown.php');
-
 		$entry_id = $this->EE->input->get('entry_id');
 		$css_file = $this->EE->input->get('stylesheet');
 		$field_id = $this->EE->input->get('field_id');
@@ -51,8 +50,7 @@ class Markdown {
 		}
 
 		if($css_file === false || $css_file === '') {
-			$url_third_themes = defined('URL_THIRD_THEMES') ? URL_THIRD_THEMES : $this->EE->config->slash_item('theme_folder_url').'third_party/';
-			$css_file = $url_third_themes . 'markdown/css/default.css';
+			$css_file = MARKDOWN_GLOBAL_CSS;
 		}
 
 		if($matrix == 1) {
@@ -65,7 +63,7 @@ class Markdown {
 			$content = '';
 		}
 
-		$html = file_get_contents(PATH_THIRD.'/markdown/library/iframe.html');
+		$html = file_get_contents(dirname(__FILE__).'/library/iframe.html');
 
 		$html = str_replace('{stylesheet}', $css_file, $html);
 		$html = str_replace('{content}', Markdown($content), $html);
