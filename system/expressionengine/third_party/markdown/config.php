@@ -4,7 +4,7 @@
 ***********************************************************************/
 
 if(defined('MARKDOWN_VER') === FALSE) {
-	define('MARKDOWN_VER', '1.0');
+	define('MARKDOWN_VER', '1.1');
 }
 
 /* Global Options
