@@ -72,12 +72,11 @@ class Markdown {
 
 		exit;
 	}
-	
-	// ----------------------------------------------------------------
 
-	/**
-	 * Start on your custom code here...
-	 */
+	public function toHTML() {
+			return Markdown($this->EE->TMPL->tagdata);
+	}
+	
 	
 }
 /* End of file mod.markdown.php */
