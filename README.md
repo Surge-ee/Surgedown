@@ -13,12 +13,35 @@ This is a Markdown custom field for ExpressionEngine. It updates as you type to 
 3. Users can select a stylesheet per custom field - Make the markdown output look and feel just like the front-end!
 4. Matrix compatible!
 
+### Usage:
+
+1. Install into themes/third_party and expressionengine/third_party as usual
+2. Install Module and Fieldtype from Add-Ons area in Admin
+3. Use Markdown fieldtype, either alone or within Matrix
+4. Module tag: {exp:markdown:toHTML}content{/exp:markdown:toHTML}
+
+**Example Usage:**
+
+	{exp:markdown:toHTML}
+	### This is an h3 tag
+
+	1. This is
+	2. A numbered list
+	3. Of fun and excitement!
+
+	And this will show as a paragraph
+	{/exp:markdown:toHTML}
+
 ### To Do:
 1. Get rid of AJAX, replace with client-side Markdown parser. Suggestions *very* welcome.
-2. Since there is already a module portion, add template tags to convert any Markdown string to HTML {exp:markdown:toHTML}content{/exp:markdown:toHTML}
 
 
 ### Change Log
+
+**1.2**
+
+* Added support for module template tag:{exp:markdown:toHTML}Markdown Content Here{/exp:markdown:toHTML}
+* This applies to To Do item: "2. Since there is already a module portion, add template tags to convert any Markdown string to HTML {exp:markdown:toHTML}content{/exp:markdown:toHTML}"
 
 **1.1**
 
