@@ -98,7 +98,7 @@ class Markdown_ft extends EE_Fieldtype {
 		// 	)
 		// );
 		//Markdown here
-		require(PATH_THIRD . '/markdown/library/markdown.php');
+		require_once(PATH_THIRD . '/markdown/library/markdown.php');
 		return Markdown($data);
 	}
 	
